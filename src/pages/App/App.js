@@ -38,7 +38,7 @@ function App() {
       />
       <Route path="/:username" element={<ProfilePage user={user} handleLogout={handleLogout}  />} />
       <Route path="/event/:_id"
-        element={<EventPage/>} />
+        element={<EventPage />} />
     </Routes>
     )
   }

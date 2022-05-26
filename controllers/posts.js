@@ -7,11 +7,12 @@ const s3 = new S3();
 module.exports = {
     create,
     index,
-    getEvent
+    getEvent,
+    search
 }
 
 function create(req, res){
-    console.log(req.file, req.body, 'this is create method', req.user)
+    // console.log(req.file, req.body, 'this is create method', req.user)
     try {
         const filePath = `${uuidv4()}/${req.file.originalname}`
         const params = {Bucket: process.env.BUCKET_NAME, Key: filePath, Body: req.file.buffer};
@@ -28,7 +29,7 @@ function create(req, res){
                 user: req.user, 
                 photoUrl: data.Location
             });
-            console.log(post)
+            // console.log(post)
 			// make sure the post we're sending back has the user populated
 			await post.populate('user');
 		
@@ -44,11 +45,20 @@ function create(req, res){
 
 async function getEvent(req, res) {
     try {
-        const post = await Post.find({'_id': req.body._id});
-        if (post) console.log('post info', post)
+        const post = await Post.findById(req.params._id);
         res.status(200).json({post})
     } catch (error) {
         console.log('error grabbing specific event', error)
+    }
+}
+
+async function search(req, res) {
+    try {
+        const searchEvents = await Post.find({"eventName": {$regex: req.params.keyword}});
+        if (searchEvents) console.log('searches,', searchEvents);
+        res.status(200).json(searchEvents);
+    } catch(error) {
+        console.log('error searching keyword', error)
     }
 }
 

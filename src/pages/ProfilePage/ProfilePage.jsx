@@ -8,7 +8,7 @@ import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 
 import userService from "../../utils/userService";
 // import * as likesAPI from '../../utils/likeApi';
-
+import './profile.css';
 import { useParams } from "react-router-dom";
 
 
@@ -22,30 +22,6 @@ export default function ProfilePage(props) {
   const [posts, setPosts] = useState([]);
   // We need to grab the username out of the url,
   const { username } = useParams();
-
-
-//   async function addLike(postId){
-//     try {
-//       const data = await likesAPI.create(postId)
-//       console.log(data, ' <- the response from the server when we make a like');
-//       getProfile(); // <- to go get the updated posts with the like
-//     } catch(err){
-//       console.log(err)
-//       setError(err.message)
-//     }
-//   }
-
-//   async function removeLike(likeId){
-//     try {
-//       const data = await likesAPI.removeLike(likeId);
-//       console.log(data, '<-  this is the response from the server when we remove a like')
-//       getProfile()
-      
-//     } catch(err){
-//       console.log(err);
-//       setError(err.message);
-//     }
-//   }
 
   async function getProfile() {
     try {

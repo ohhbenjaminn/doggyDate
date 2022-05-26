@@ -4,8 +4,9 @@ const postsCtrl = require('../../controllers/posts');
 const multer  = require('multer')
 const upload = multer(); // <- handles multipart/formdata requests(photos)
 // /*---------- Public Routes ----------*/
+router.post('/event/:_id', postsCtrl.getEvent)
+router.post('/search/:keyword', postsCtrl.search)
 router.post('/', upload.single('photo'), postsCtrl.create);
-router.get('/event/:_id', postsCtrl.getEvent)
 router.get('/', postsCtrl.index)
 
 

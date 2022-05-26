@@ -81,6 +81,7 @@ export default function AddPuppyForm(props){
                   className="form-control"
                   name="date"
                   value={state.date}
+                  type="date"
                   placeholder="Date"
                   onChange={handleChange}
                   required
@@ -89,6 +90,7 @@ export default function AddPuppyForm(props){
                   className="form-control"
                   name="time"
                   value={state.time}
+                  type="time"
                   placeholder="Time"
                   onChange={handleChange}
                   required

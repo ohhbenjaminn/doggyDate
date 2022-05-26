@@ -12,7 +12,7 @@ function PostCard({ post, isProfile, user }) {
       ) : (
         <Card.Content textAlign="left">
           <Card.Header onClick={onClickHandler} >
-            <Link to={`/event/${post._id}`}>
+
               {/* <Image
                 size="large"
                 avatar
@@ -23,15 +23,16 @@ function PostCard({ post, isProfile, user }) {
                 }
               /> */}
               {/* {post.user.username} */}
-            </Link>
           </Card.Header>
         </Card.Content>
       )}
-
+            <Link to={`/event/${post._id}`}>
       <Image src={`${post.photoUrl}`} wrapped ui={false} />
       <Card.Content>
         <Card.Description>{post.eventName}</Card.Description>
       </Card.Content>
+
+            </Link>
     </Card>
   );
 }

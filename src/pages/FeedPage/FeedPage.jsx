@@ -1,49 +1,23 @@
 import React, { useState, useEffect } from "react";
 import './feed.css';
 import PageHeader from "../../components/Header/Header";
+import SearchBar from '../../components/SearchBar/SearchBar';
 import AddPostForm from "../../components/AddPostForm/AddPostForm";
 import PostGallery from "../../components/PostGallery/PostGallery";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import Loading from "../../components/Loader/Loader";
 import * as postsAPI from "../../utils/postApi";
-// import * as likesAPI from '../../utils/likeApi';
-
-
-
-
-import { Grid } from "semantic-ui-react";
+import PostCard from "../../components/PostCard/PostCard";
 
 
 
 export default function Feed({user, handleLogout}) {
   console.log(postsAPI, " <-- postsAPI")
-  const [posts, setPosts] = useState([]); // <- likes are inside of the each post in the posts array
+  const [posts, setPosts] = useState([]); 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+    const [searchedEvents, setSearchedEvents] = useState();
 
-// instead of like API, will use attend API? ---------------
-//   async function addLike(postId){
-//     try {
-//       const data = await likesAPI.create(postId)
-//       console.log(data, ' <- the response from the server when we make a like');
-//       getPosts(); // <- to go get the updated posts with the like
-//     } catch(err){
-//       console.log(err)
-//       setError(err.message)
-//     }
-//   }
-
-//   async function removeLike(likeId){
-//     try {
-//       const data = await likesAPI.removeLike(likeId);
-//       console.log(data, '<-  this is the response from the server when we remove a like')
-//       getPosts()
-      
-//     } catch(err){
-//       console.log(err);
-//       setError(err.message);
-//     }
-//   }
 
 
 
@@ -78,7 +52,7 @@ export default function Feed({user, handleLogout}) {
       setPosts([...data.posts]);
       setLoading(false);
     } catch (err) {
-      console.log(err.message, " this is the error");
+    //   console.log(err.message, " this is the error");
       setError(err.message);
     }
   }
@@ -111,59 +85,43 @@ export default function Feed({user, handleLogout}) {
   } 
 
   return (
-      
-        
-     
-      
-      
-    // <Grid centered>
-    //   <Grid.Row>
-    //     <Grid.Column>
-    //       <PageHeader handleLogout={handleLogout} user={user}/>
-    //     </Grid.Column>
-    //   </Grid.Row>
-    //   <Grid.Row>
-    //     <Grid.Column style={{ maxWidth: 450, float: 'right' }}>
-
-    //       <AddPostForm handleAddPost={handleAddPost} />
-
-    //     </Grid.Column>
-    //   </Grid.Row>
-    //   <Grid.Row>
-    //     <Grid.Column style={{ maxWidth: 450 }}>
-
-    //       <PostGallery
-    //         posts={posts}
-    //         numPhotosCol={1}
-    //         isProfile={false}
-    //         loading={loading}
-    //         // addLike={addLike}
-    //         // removeLike={removeLike}
-    //         user={user}
-    //       />
-
-    //     </Grid.Column>
-    //   </Grid.Row>
-    // </Grid>
-
     <div className="crayons">
         <div className="topFeed">
-            <PageHeader handleLogout={handleLogout} user={user}/>
+            <PageHeader handleLogout={handleLogout} user={user} setSearchedEvents={setSearchedEvents}/>
         </div>
+        <br></br>
         
-            <div className="feedLeft">
-                <br></br>
-                <PostGallery
-                    posts={posts}
-                    numPhotosCol={1}
-                    isProfile={false}
-                    loading={loading}
-                    // addLike={addLike}
-                    // removeLike={removeLike}
-                    user={user}
-                />  
-                <br></br>
-            </div>
+            <SearchBar setSearchedEvents={setSearchedEvents}/>
+            { searchedEvents ? (
+                <div>
+                    {searchedEvents.length === 0 && (
+                        <div>
+                            Sorry, nothing matched
+                        </div>
+                    )}
+                    {searchedEvents.map((event) => {
+                        return (
+                            <PostCard 
+                                post={event}
+                                isProfile={false}
+                                user={user}
+                            />
+                        )
+                    })}
+                </div>
+            ) : (
+                <div className="feedLeft">
+                    <br></br>
+                    <PostGallery
+                        posts={posts}
+                        numPhotosCol={1}
+                        isProfile={false}
+                        loading={loading}
+                        user={user}
+                    />  
+                    <br></br>
+                </div>
+            )}
             <div className="feedRight">
                 <AddPostForm handleAddPost={handleAddPost} />  
             </div>     
