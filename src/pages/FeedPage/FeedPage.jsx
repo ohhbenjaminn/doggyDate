@@ -111,6 +111,11 @@ export default function Feed({user, handleLogout}) {
   } 
 
   return (
+      
+        
+     
+      
+      
     // <Grid centered>
     //   <Grid.Row>
     //     <Grid.Column>
@@ -140,18 +145,31 @@ export default function Feed({user, handleLogout}) {
     //     </Grid.Column>
     //   </Grid.Row>
     // </Grid>
-    <div class="crayons">
-        <PageHeader handleLogout={handleLogout} user={user}/>
-        <AddPostForm handleAddPost={handleAddPost} />
-        <PostGallery
-            posts={posts}
-            numPhotosCol={1}
-            isProfile={false}
-            loading={loading}
-            // addLike={addLike}
-            // removeLike={removeLike}
-            user={user}
-        />
+
+    <div className="crayons">
+        <div className="topFeed">
+            <PageHeader handleLogout={handleLogout} user={user}/>
+        </div>
+        
+            <div className="feedLeft">
+                <br></br>
+                <PostGallery
+                    posts={posts}
+                    numPhotosCol={1}
+                    isProfile={false}
+                    loading={loading}
+                    // addLike={addLike}
+                    // removeLike={removeLike}
+                    user={user}
+                />  
+                <br></br>
+            </div>
+            <div className="feedRight">
+                <AddPostForm handleAddPost={handleAddPost} />  
+            </div>     
+        
+        
     </div>
+    
   );
 }

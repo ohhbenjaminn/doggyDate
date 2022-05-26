@@ -13,7 +13,7 @@ function PostCard({ post, isProfile, user }) {
         <Card.Content textAlign="left">
           <Card.Header onClick={onClickHandler} >
             <Link to={`/event/${post._id}`}>
-              <Image
+              {/* <Image
                 size="large"
                 avatar
                 src={
@@ -21,8 +21,8 @@ function PostCard({ post, isProfile, user }) {
                     ? post.user.photoUrl
                     : "https://react.semantic-ui.com/images/wireframe/square-image.png"
                 }
-              />
-              {post.user.username}
+              /> */}
+              {/* {post.user.username} */}
             </Link>
           </Card.Header>
         </Card.Content>

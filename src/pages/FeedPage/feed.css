@@ -1,3 +1,26 @@
-.crayons {
-    background-color: orange;
+.feedLeft {
+    display: block;
+    float: left;
+    width: 63%;
+    font: 14px/24px; 
+    padding: 24px 15px;
+    /* text-align: center; */
+    transition: background-color .5s;
 }
+
+.feedLeft:hover {
+    opacity: 0.95
+}
+
+.feedRight {
+    display: block;
+    float: right;
+    width: 30%;
+    padding: 24px 15px;
+}
+
+.container {
+    background-image: url("https://www.ethelbird.com/images/products/preview/rb_ro_5211-bl.jpg");
+    
+   }
+
