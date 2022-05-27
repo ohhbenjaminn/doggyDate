@@ -7,6 +7,7 @@ import userService from '../../utils/userService';
 import FeedPage from '../FeedPage/FeedPage'; 
 import ProfilePage from '../ProfilePage/ProfilePage';
 import EventPage from '../Event/Event';
+import EditEvent from '../Event/EditEvent';
 
 
 function App() {
@@ -38,8 +39,10 @@ function App() {
       />
       <Route path="/:username" element={<ProfilePage user={user} handleLogout={handleLogout}  />} />
       <Route path="/event/:_id"
-        element={<EventPage />} />
-    </Routes>
+        element={<EventPage user={user}/>} />
+      <Route path="/event/edit/:_id"
+          element={<EditEvent user={user}/>} />
+      </Routes>
     )
   }
 
@@ -54,8 +57,6 @@ function App() {
         element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin} />}
       />
       <Route path="/*" element={<Navigate to="/login" />} />
-      <Route path="/event/:_id"
-        element={<EventPage/>} />
     </Routes>
   );
 }

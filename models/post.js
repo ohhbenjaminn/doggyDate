@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const likesSchema = mongoose.Schema({
+const attendingSchema = mongoose.Schema({
   username: String,
   userId: { type: mongoose.Schema.Types.ObjectId }
 })
@@ -16,7 +16,7 @@ const postSchema = new mongoose.Schema({
     date: String,
     time: String,
     admission: String,
-    // likes: [likesSchema] // embedded schema
+    attending: [attendingSchema] // embedded schema
   })
  
 

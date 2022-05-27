@@ -83,8 +83,6 @@ export default function ProfilePage(props) {
             posts={posts}
             numPhotosCol={3}
             user={props.user}
-            // addLike={addLike}
-            // removeLike={removeLike}
           />
         </Grid.Column>
       </Grid.Row>

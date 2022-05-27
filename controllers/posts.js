@@ -8,7 +8,9 @@ module.exports = {
     create,
     index,
     getEvent,
-    search
+    search, 
+    updateEvent,
+    deleteEvent,
 }
 
 function create(req, res){
@@ -43,6 +45,18 @@ function create(req, res){
     }
 }
 
+async function deleteEvent(req, res) {
+    try {
+        const findEvent = await Post.deleteOne({_id: req.params._id}, {
+            justOne: true,
+        })
+        res.status(200).send('deleted event')
+    } catch (error) {
+        console.log('delete event error', error)
+        return res.status(500).send(error)
+    }
+}
+
 async function getEvent(req, res) {
     try {
         const post = await Post.findById(req.params._id);
@@ -60,6 +74,30 @@ async function search(req, res) {
     } catch(error) {
         console.log('error searching keyword', error)
     }
+}
+
+ function updateEvent(req, res) {
+    console.log('updating event')
+    console.log(req.body)
+    Post.findOneAndUpdate({_id: req.params._id}, {
+        $set: {
+            'eventName': req.body.eventName,
+            'address': req.body.address,
+            'time': req.body.time,
+            'date': req.body.date,
+            'requirements': req.body.requirements,
+            'description': req.body.description,
+            'admission': req.body.admission,
+            'user': req.body.user,
+            // 'photo': req.body.photo,
+        }
+    }, (err, result) => {
+        console.log('result', result)
+        if (err) return console.log(err)
+        result.save()
+        console.log('successfully saved')
+    });
+    // return res.status(200).send('success')
 }
 
 async function index(req, res){
