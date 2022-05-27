@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const postsCtrl = require('../../controllers/posts');
 const multer  = require('multer')
-const upload = multer(); // <- handles multipart/formdata requests(photos)
+const upload = multer(); 
 // /*---------- Public Routes ----------*/
 router.post('/event/:_id', postsCtrl.getEvent)
 router.post('/addAttendant/:_id', postsCtrl.addAttendant)

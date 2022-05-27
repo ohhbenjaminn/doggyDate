@@ -26,6 +26,12 @@ export default function PageHeader({ user, handleLogout, setSearchedEvents }) {
         </Link>
       </Header> 
 
+      <Header as="h2" floated="center" >
+      <Link to="/" onClick={returnHome}>
+          DoggyDate
+        </Link>
+      </Header>
+
       <Header as="h2" floated="left">
         <Link to="/" onClick={returnHome}>
           <Icon name="home" size="large"></Icon>

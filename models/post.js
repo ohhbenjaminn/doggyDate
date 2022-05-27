@@ -7,7 +7,7 @@ const attendingSchema = mongoose.Schema({
 
 // A post has many likes, a like belongs to a POST
 const postSchema = new mongoose.Schema({
-    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User'}, // referencing a model
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User'}, 
     photoUrl: String,
     description: String,
     eventName: String,
@@ -16,7 +16,7 @@ const postSchema = new mongoose.Schema({
     date: String,
     time: String,
     admission: String,
-    attending: [attendingSchema] // embedded schema
+    attending: [attendingSchema] 
   })
  
 

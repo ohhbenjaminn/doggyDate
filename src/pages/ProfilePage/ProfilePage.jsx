@@ -7,7 +7,6 @@ import PostGallery from "../../components/PostGallery/PostGallery";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import * as postsAPI from "../../utils/postApi";
 import userService from "../../utils/userService";
-// import * as likesAPI from '../../utils/likeApi';
 import './profile.css';
 import { useParams } from "react-router-dom";
 import PostCard from "../../components/PostCard/PostCard";
@@ -20,7 +19,7 @@ export default function ProfilePage(props) {
   const [error, setError] = useState("");
   const [user, setUser] = useState({});
   const [userPosts, setUserPosts] = useState([]);
-  // We need to grab the username out of the url,
+
   const { username } = useParams();
   const [allPosts, setAllPosts] = useState([]);
 
@@ -38,8 +37,6 @@ export default function ProfilePage(props) {
   }
 
 
-  // then when the component loads we can use that username to fetch all the users data
-  // then we can store that in state
   useEffect(() => {
     getProfile();
     getPosts();

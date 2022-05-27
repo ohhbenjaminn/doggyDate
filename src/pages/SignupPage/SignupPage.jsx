@@ -22,29 +22,18 @@ export default function SignUpPage(props) {
   async function handleSubmit(e){
     e.preventDefault()
 
-    // Create form Data, because we're sending a multipart/formData request, 
-    // because we are sending over multiple requests, because we're uploading a photo!
-    const formData = new FormData(); // new FormData is from the browser
+    const formData = new FormData(); 
     formData.append('photo', selectedFile);
-
-    // wrote way of appending each key value pair to form Data
-    // formData.append('username', state.username);
-    // formData.append('email', state.email);
 
     for (let fieldName in state){
       formData.append(fieldName, state[fieldName])
     }
 
-    // console.log(formData, " <- formData") // <- this doesn't allow you to look at the formdData object
-    // console.log(formData.forEach((item) => console.log(item))); // <- to look at the keys, you must forEach over it
 
     try {
 
-      await userService.signup(formData) // <- we must pass the argument as formData when we have a
-      // photo
-      props.handleSignUpOrLogin(); // <- this will decode the token from local storage
-      // that we just recieved as a respone to our userService.signup fetch call,
-      // and decode and update the state in our App component
+      await userService.signup(formData) 
+      props.handleSignUpOrLogin(); 
       navigate('/')
 
     } catch(err){
