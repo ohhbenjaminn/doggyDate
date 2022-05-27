@@ -6,7 +6,7 @@ import tokenService from '../../utils/tokenService';
 import Loading from "../../components/Loader/Loader";
 import Header from '../../components/Header/Header'
 
-export default function EditEvent() {
+export default function EditEvent(props) {
     const { _id } = useParams();
     let [event, setEvent] = useState({});
     let [state, setState] = useState({});
@@ -111,7 +111,7 @@ export default function EditEvent() {
 
     return (
         <div>
-            <Header/>
+            <Header user={props.user}/>
                 <Grid textAlign='center' style={{ height: '25vh' }} verticalAlign='middle'>
             <Grid.Column style={{ maxWidth: 450 }}>
             {fetchResponse ? (

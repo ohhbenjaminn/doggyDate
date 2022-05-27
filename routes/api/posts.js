@@ -5,6 +5,8 @@ const multer  = require('multer')
 const upload = multer(); // <- handles multipart/formdata requests(photos)
 // /*---------- Public Routes ----------*/
 router.post('/event/:_id', postsCtrl.getEvent)
+router.post('/addAttendant/:_id', postsCtrl.addAttendant)
+router.post('/removeAttendance/:_id', postsCtrl.removeAttendant)
 router.post('/edit/:_id', postsCtrl.updateEvent)
 router.post('/search/:keyword', postsCtrl.search)
 router.post('/', upload.single('photo'), postsCtrl.create);

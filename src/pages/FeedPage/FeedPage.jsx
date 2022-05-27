@@ -108,6 +108,9 @@ export default function Feed({user, handleLogout}) {
                             />
                         )
                     })}
+                    <br></br>
+                    
+                    
                 </div>
             ) : (
                 <div className="feedLeft">

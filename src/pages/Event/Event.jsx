@@ -22,12 +22,12 @@ export default function EventPage(props) {
     }, [])
 
     function attendEvent() {
-        
+
     }
 
     return (
         <div>   
-            <Header/>
+            <Header user={props.user}/>
             { event.user === props.user._id ? (
                 <div>
                     <Link to={`/event/edit/${_id}`}>
@@ -38,6 +38,7 @@ export default function EventPage(props) {
                 <div>
                     <button>attend</button>
                 </div>
+                
             )}
             { event && (
                 <div className="event-container">

@@ -11,6 +11,8 @@ module.exports = {
     search, 
     updateEvent,
     deleteEvent,
+    addAttendant,
+    removeAttendant
 }
 
 function create(req, res){
@@ -42,6 +44,36 @@ function create(req, res){
     } catch(err){
         console.log(err)
         res.json({data: err})
+    }
+}
+
+async function addAttendant(req,res) {
+    try {
+        const event = await Post.findById(req.params._id);
+        event.attending.push({username: req.user.username, userId: req.user.userId});
+        await event.save();
+        res.status(200).send(true)
+    } catch (error) {
+        console.log('addAttendant', error)
+        res.status(400).send('error adding attendance')
+    }
+}
+
+async function removeAttendant(req,res) {
+    console.log('hitting here')
+    try {
+        const event = await Post.findById(req.params._id);
+        event.attending.map((i) => {
+            if (i.username === req.user.username) {
+                event.attending.remove(i)
+            }
+        })
+        await event.save();
+        console.log(event)
+        res.status(200).send(false)
+    } catch (error) {
+        console.log('removeAttendant', error)
+        res.status.send('error removing attendance')
     }
 }
 

@@ -5,12 +5,12 @@ import Loading from "../../components/Loader/Loader";
 import ProfileBio from "../../components/ProfileBio/ProfileBio";
 import PostGallery from "../../components/PostGallery/PostGallery";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
-
+import * as postsAPI from "../../utils/postApi";
 import userService from "../../utils/userService";
 // import * as likesAPI from '../../utils/likeApi';
 import './profile.css';
 import { useParams } from "react-router-dom";
-
+import PostCard from "../../components/PostCard/PostCard";
 
 
 
@@ -19,9 +19,10 @@ export default function ProfilePage(props) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [user, setUser] = useState({});
-  const [posts, setPosts] = useState([]);
+  const [userPosts, setUserPosts] = useState([]);
   // We need to grab the username out of the url,
   const { username } = useParams();
+  const [allPosts, setAllPosts] = useState([]);
 
   async function getProfile() {
     try {
@@ -29,7 +30,7 @@ export default function ProfilePage(props) {
       console.log(data, " < -- data");
       setLoading(() => false);
       setUser(() => data.user);
-      setPosts(() => data.posts);
+      setUserPosts(() => data.posts);
     } catch (err) {
       console.log(err);
       setError("Profile Doesn't exists, CHECK YOUR TERMINAL FOR EXPRESS!");
@@ -41,10 +42,20 @@ export default function ProfilePage(props) {
   // then we can store that in state
   useEffect(() => {
     getProfile();
+    getPosts();
   }, []);
 
-
-
+  async function getPosts() {
+    try {
+      const data = await postsAPI.getAll();
+      console.log(data, " this is data,");
+      setAllPosts([...data.posts]);
+      setLoading(false);
+    } catch (err) {
+    //   console.log(err.message, " this is the error");
+      setError(err.message);
+    }
+  }
 
   if (error) {
     return (
@@ -78,14 +89,37 @@ export default function ProfilePage(props) {
       </Grid.Row>
       <Grid.Row centered>
         <Grid.Column style={{ maxWidth: 750 }}>
+          <div class="events-header">
+            Events You've Created
+          </div>
         <PostGallery
             isProfile={true}
-            posts={posts}
+            posts={userPosts}
             numPhotosCol={3}
             user={props.user}
           />
         </Grid.Column>
       </Grid.Row>
+        <div class="events-header">EVENTS YOU'RE ATTENDING</div>
+        
+        {allPosts.map((post) => {
+           const attending = post.attending;
+           return attending.map(event => {
+             if (event.username === user.username) {
+               return (
+                 <div>
+                   <PostCard
+                     isProfile={true}
+                     post={post}
+                     key={post._id}
+                     user={props.user}
+                   />
+                 </div>
+               )
+             }
+
+           })
+        })}
     </Grid>
   );
 }

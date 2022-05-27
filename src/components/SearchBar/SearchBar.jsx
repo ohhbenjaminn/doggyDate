@@ -1,5 +1,7 @@
 import React from 'react';
 import tokenService from '../../utils/tokenService';
+import './SearchBar.css';
+
 
 function Searchbar(props) {
     const [inputValue, setInputValue] = React.useState('');
@@ -31,7 +33,7 @@ function Searchbar(props) {
     }
 
     return (
-        <div>
+        <div className="searchBarCss">
             <input value={inputValue} placeholder="search for events" onChange={(e) => handleChange(e)}/>
             <button onClick={() => handleSubmit()}>Search</button>
         </div>

@@ -1,0 +1,14 @@
+.searchBarCss {
+     /* top: 10%; */
+     left: 575px;
+     display: block;
+     margin-right: auto;
+    margin-left: auto;
+    
+
+}
+
+.searchBarCss input {
+    height: 30px;
+    width: 500px;
+}

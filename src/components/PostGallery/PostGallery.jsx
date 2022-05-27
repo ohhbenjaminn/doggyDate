@@ -5,7 +5,12 @@ import Loader from '../Loader/Loader';
 
 export default function PostFeed({posts, numPhotosCol, isProfile, loading, user }){
     return (
-        <Card.Group itemsPerRow={numPhotosCol} stackable style={{border: '1px soild black'}}>
+        <Card.Group itemsPerRow={numPhotosCol} stackable 
+          style={{
+            margin: '40px 0',
+            border: '1px soild black',
+            width: '50vw',
+        }}>
         {loading ? (
           <Segment>
             <Dimmer active inverted>
