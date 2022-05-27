@@ -3,6 +3,9 @@
 ## ERD and Wireframe:
 ![PXL_20220520_230419156](https://user-images.githubusercontent.com/43531474/170739204-fa6089db-53e0-4a6b-8dd7-ec25ca878490.jpg)
 
+## Trello:
+https://trello.com/b/bKgnHpIS/project-4
+
 ## ScreenShots:
 
 <img width="1276" alt="Screen Shot 2022-05-27 at 9 31 02 AM" src="https://user-images.githubusercontent.com/43531474/170741573-027aeb38-1cca-4588-b5ba-2dc31cc1ead5.png">
