@@ -86,7 +86,9 @@ export default function ProfilePage(props) {
       </Grid.Row>
       <Grid.Row centered>
         <Grid.Column style={{ maxWidth: 750 }}>
-          <div class="events-header">
+          <br></br>
+          <br></br>
+          <div class="events-header1">
             Events You've Created
           </div>
         <PostGallery
@@ -97,7 +99,7 @@ export default function ProfilePage(props) {
           />
         </Grid.Column>
       </Grid.Row>
-        <div class="events-header">EVENTS YOU'RE ATTENDING</div>
+        <div class="events-header2">Events Attending</div>
         
         {allPosts.map((post) => {
            const attending = post.attending;

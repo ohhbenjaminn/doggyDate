@@ -1,9 +1,35 @@
 .h3 {
     background-color: white;
 }
-.events-header{
+.events-header1{
     font-size: 50px;
     font-weight: bold;
     text-decoration: uppercase;
     margin: 10px 0;
+    background-color: aquamarine;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    border-radius: 25px;
+    margin-left: 40px;
+    font-family: "Brush Script MT", cursive; 
+}
+
+.events-header2{
+    display: flex;
+    font-size: 50px;
+    font-weight: bold;
+    text-decoration: uppercase;
+    margin: 10px 0;
+    background-color: aquamarine;
+    text-align: center;
+    padding-top: 75px;
+    border-radius: 25px;
+    margin-left: 40px;
+    font-family: "Brush Script MT", cursive; 
+}
+
+.ui.grid>.row>.column>img, .ui.grid>.row>img {
+    max-width: 100%;
+    background-color: white;
 }
